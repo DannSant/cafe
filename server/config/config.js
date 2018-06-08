@@ -1,4 +1,4 @@
-import { url } from "inspector";
+//import { url } from "inspector";
 
 //===============
 // PUERTO
@@ -14,15 +14,26 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 
 //===============
-// DB
+// Vencimiento de token
 //==============
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+//===============
+// Seed
+//==============
+process.env.SEED = process.env.SEED || 'este-es-el-seed-de-desarrollo';
+
+
+//===============
+// DB
+//===============
 
 let urlDB = "";
 
 if (process.env.NODE_ENV == "dev") {
     urlDB = 'mongodb://localhost:27017/cafe';
 } else {
-    urlDB = 'mongodb://cafe-user:a123456@ds147890.mlab.com:47890/cafe';
+    urlDB = process.env.MONGO_URI;
 }
 
 process.env.urlDB = urlDB;
